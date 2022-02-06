@@ -8,12 +8,13 @@ interface Todo {
 }
 
 const App: React.FC = () => {
-  // const todos: Todo[] = [{ id: Math.random().toString(), text: 'hi' }];
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodoFunc = (text: string) => {
-    setTodos([...todos, { id: Math.random().toString(), text }]);
-    console.log(todos);
+    setTodos((prevTodos) => [
+      ...prevTodos,
+      { id: Math.random().toString(), text },
+    ]);
   };
 
   return (
