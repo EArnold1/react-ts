@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AddTodo } from './components/TodoList';
+import NewTodo from './components/NewTodo';
+
+interface Todo {
+  id: string;
+  text: string;
+}
 
 const App: React.FC = () => {
+  // const todos: Todo[] = [{ id: Math.random().toString(), text: 'hi' }];
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const addTodoFunc = (text: string) => {
+    setTodos([...todos, { id: Math.random().toString(), text }]);
+    console.log(todos);
+  };
+
   return (
     <div className="App">
-      <p>Hi</p>
+      <NewTodo addTodo={addTodoFunc} />
+      <AddTodo items={todos} />
     </div>
   );
 };
