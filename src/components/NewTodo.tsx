@@ -5,19 +5,31 @@ interface TodoFunc {
 }
 
 const NewTodo: React.FC<TodoFunc> = (props) => {
+  const { addTodo } = props;
   const textRef = useRef<HTMLInputElement>(null);
 
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
     const textVal = textRef.current!.value;
-    props.addTodo(textVal);
+    addTodo(textVal);
+    textRef.current!.value = '';
   };
 
   return (
-    <div>
-      <form onSubmit={submitForm}>
-        <input type="text" ref={textRef} />
-        <input type="submit" value="Add" />
+    <div className="mt-4">
+      <form onSubmit={submitForm} className="form-group">
+        <input
+          type="text"
+          placeholder="insert todo"
+          className="form-control"
+          ref={textRef}
+        />
+        <br />
+        <input
+          type="submit"
+          className="btn btn-warning btn-block"
+          value="Add"
+        />
       </form>
     </div>
   );

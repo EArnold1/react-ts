@@ -6,13 +6,22 @@ interface TodoListProps {
 }
 
 export const AddTodo: React.FC<TodoListProps> = (props) => {
+  const { items, deleteTodo } = props;
+
   return (
     <div>
-      <ul>
-        {props.items.map((todo) => (
-          <li key={todo.id}>
+      <ul className="list-group">
+        {items.map((todo) => (
+          <li key={todo.id} className="list-group-item">
             {todo.text}{' '}
-            <button onClick={props.deleteTodo.bind(null, todo.id)}>del</button>{' '}
+            <span
+              className="btn btn-outline-danger btn-sm"
+              onClick={() => {
+                deleteTodo(todo.id);
+              }}
+            >
+              del
+            </span>{' '}
           </li>
         ))}
       </ul>

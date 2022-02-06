@@ -25,8 +25,11 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <NewTodo addTodo={addTodoFunc} />
-      <AddTodo items={todos} deleteTodo={deleteTodo} />
+      <div className="container">
+        <h3 className="text-center">Add Todo</h3>
+        <NewTodo addTodo={addTodoFunc} />
+        <AddTodo items={todos} deleteTodo={deleteTodo} />
+      </div>
     </div>
   );
 };
